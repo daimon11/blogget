@@ -6,7 +6,14 @@ import Search from './Search';
 import Auth from './Auth';
 import Heading from './Heading';
 
+import PropTypes from 'prop-types';
+
 export const Header = () => {
+  // static propTypes = {
+  //   min: PropTypes.number,
+  //   max: PropTypes.number,
+  // };
+
   return (
     <header className={style.header}>
       <Layout>
@@ -18,4 +25,9 @@ export const Header = () => {
         </div>
       </Layout>
     </header >)
-}
+};
+
+// Header.propTypes = {
+//   min: PropTypes.number,
+//   max: PropTypes.number,
+// };
