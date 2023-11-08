@@ -119,11 +119,11 @@
   background-color: #ff9966;
 }
 .up {
-  background-image: url('./img/up.svg');
+  background-image: url('../img/up.svg');
 }
 
 .down {
-  background-image: url('./img/down.svg');
+  background-image: url('../img/down.svg');
 }
 
 .ups {
