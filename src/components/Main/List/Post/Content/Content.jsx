@@ -1,4 +1,4 @@
-import style from './Content.module.css';
+import style from '../Post.module.css';
 import PropTypes from 'prop-types';
 
 export const Content = ({ postData }) => (

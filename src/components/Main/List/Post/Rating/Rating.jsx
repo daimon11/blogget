@@ -1,4 +1,5 @@
-import style from './Rating.module.css';
+import style from '../Post.module.css';
+import PropTypes from 'prop-types';
 
 export const Rating = ({ups}) => (
   <div className={style.rating}>
@@ -7,3 +8,8 @@ export const Rating = ({ups}) => (
     <button className={style.down} aria-label='Уменьшить рейтинг' />
   </div>
 );
+
+Rating.propTypes = {
+  ups: PropTypes.number,
+};
+

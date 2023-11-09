@@ -5,7 +5,7 @@
   grid-template-rows: 1fr min-content;
   grid-template-columns: 120px 1fr;
   grid-template-areas:
-    'img content rating'
+    'img content delete'
     'img content rating'
     'img data rating';
   column-gap: 20px;
@@ -30,6 +30,7 @@
   transition: color .36s ease-in-out;
   outline: 2px solid transparent;
   border-radius: 6px;
+  grid-area: delete;
 }
 
 .delete:hover {
@@ -81,8 +82,6 @@
   line-height: 130%;
   color: #8f8f8f;
 }
-
-
 
 .linkPost:after {
   content: '';
