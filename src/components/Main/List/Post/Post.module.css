@@ -56,13 +56,6 @@
   align-self: center;
 }
 
-.content {
-  grid-area: content;
-  padding-top: 10px;
-  padding-right: 10px;
-  margin-bottom: 10px;
-}
-
 .rating {
   grid-area: rating;
   display: flex;
@@ -81,26 +74,6 @@
   font-size: 12px;
   line-height: 130%;
   color: #8f8f8f;
-}
-
-.linkPost:after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  transition: box-shadow 0.36s ease-in-out;
-}
-
-.linkAuthor {
-  position: relative;
-  font-size: 12px;
-  line-height: 14px;
-  color: #cc6633;
-  transition: color 0.36s ease-in-out;
-}
-
-.linkAuthor:hover {
-  color: #2d2d2d;
 }
 
 .up,

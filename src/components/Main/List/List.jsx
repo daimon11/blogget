@@ -39,12 +39,7 @@ export const List = () => {
 
   return (
     <ul className={style.list}>
-      {/* <Post postData={postData[0]}></Post>
-      <Post postData={postData[1]}></Post>
-      <Post postData={postData[2]}></Post>
-      <Post postData={postData[3]}></Post> */}
       {
-        // eslint-disable-next-line react/jsx-key
         [<Post key='233141' postData={postData[0]}></Post>,
         <Post key='2' postData={postData[1]}></Post>,
         <Post key='3' postData={postData[2]}></Post>,

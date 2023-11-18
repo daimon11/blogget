@@ -9,25 +9,21 @@ import Heading from './Heading';
 import PropTypes from 'prop-types';
 
 export const Header = () => {
-  // static propTypes = {
-  //   min: PropTypes.number,
-  //   max: PropTypes.number,
-  // };
-
   return (
     <header className={style.header}>
       <Layout>
         <div className={style.gridContainer}>
           <Logo />
-          <Heading text='Главная'/>
+          <Heading text='Главная' />
           <Search />
           <Auth auth={false} />
         </div>
       </Layout>
-    </header >)
+    </header>
+  );
 };
 
-// Header.propTypes = {
-//   min: PropTypes.number,
-//   max: PropTypes.number,
-// };
+Header.propTypes = {
+  min: PropTypes.number,
+  max: PropTypes.number,
+};

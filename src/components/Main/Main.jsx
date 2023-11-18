@@ -11,5 +11,3 @@ export const Main = () => (
     </Layout>
   </main>
 );
-
-// 31-34 остановился
