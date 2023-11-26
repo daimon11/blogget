@@ -8,22 +8,19 @@ import Heading from './Heading';
 
 import PropTypes from 'prop-types';
 
-export const Header = () => {
-  return (
-    <header className={style.header}>
-      <Layout>
-        <div className={style.gridContainer}>
-          <Logo />
-          <Heading text='Главная' />
-          <Search />
-          <Auth auth={false} />
-        </div>
-      </Layout>
-    </header>
-  );
-};
+export const Header = ({token}) => (
+  <header className={style.header}>
+    <Layout>
+      <div className={style.gridContainer}>
+        <Logo />
+        <Heading text='Главная' />
+        <Search />
+        <Auth auth={token} />
+      </div>
+    </Layout>
+  </header>
+);
 
-Header.propTypes = {
-  min: PropTypes.number,
-  max: PropTypes.number,
+Header.PropTypes = {
+  token: PropTypes.string,
 };
