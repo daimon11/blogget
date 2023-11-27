@@ -9,6 +9,16 @@ export const useToken = (state) => {
         .get('access_token');
       setToken(token);
     }
+
+    if (localStorage.getItem('bearer')) {
+      setToken(localStorage.getItem('bearer'));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem('bearer', token);
+    }
   }, []);
 
   return [token];

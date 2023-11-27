@@ -4,7 +4,6 @@ import style from './List.module.css';
 import Post from './Post';
 
 export const List = () => {
-  console.log(style);
 
   const postData = [
     {

@@ -8,19 +8,19 @@ import Heading from './Heading';
 
 import PropTypes from 'prop-types';
 
-export const Header = ({token}) => (
+export const Header = ({ token }) => (
   <header className={style.header}>
     <Layout>
       <div className={style.gridContainer}>
         <Logo />
         <Heading text='Главная' />
         <Search />
-        <Auth auth={token} />
+        <Auth token={token} />
       </div>
     </Layout>
   </header>
 );
 
-Header.PropTypes = {
+Header.propTypes = {
   token: PropTypes.string,
 };
