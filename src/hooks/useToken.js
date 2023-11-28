@@ -3,6 +3,11 @@ import { useState, useEffect } from 'react';
 export const useToken = (state) => {
   const [token, setToken] = useState(state);
 
+  const delToken = () => {
+    localStorage.removeItem('bearer');
+    console.log('delToken');
+  };
+
   useEffect(() => {
     if (location.pathname.includes('/auth')) {
       const token = new URLSearchParams(location.hash.substring(1))
@@ -21,5 +26,5 @@ export const useToken = (state) => {
     }
   }, []);
 
-  return [token];
+  return [token, delToken];
 };

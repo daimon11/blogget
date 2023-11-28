@@ -5,11 +5,13 @@ import { useToken } from './hooks/useToken';
 
 
 function App() {
-  const [token] = useToken('');
+  const [token, delToken] = useToken('');
+
+  // console.log(typeof delToken);
 
   return (
     <>
-      <Header token={token} />
+      <Header token={token} delToken={delToken} />
       <Main />
     </>
   );
@@ -17,6 +19,7 @@ function App() {
 
 App.propTypes = {
   token: PropTypes.string,
+  delToken: PropTypes.func,
 };
 
 export default App;
