@@ -7,12 +7,18 @@ import { Content } from './Content/Content.jsx';
 import { Rating } from './Rating/Rating.jsx';
 import { ReactComponent as ButtonDel } from './img/delete.svg';
 
+const handleImageError = (e) => {
+  e.target.onerror = null;
+  e.target.src = notphoto;
+}
+
 export const Post = ({ postData }) => (
   <li className={style.post}>
-    <img className={style.img} src={notphoto} alt={postData.title} />
-
-    {/* Я создал компоненты Content, Rating, ButtonDel.
-Вложенные структуры тегов терерь стали отдельными облоками, а компонент Post стал более понятным и читаемым. Новые компоненты можно переиспользовать в другом месте */}
+    <img
+      className={style.img}
+      src={postData.thumbnail.length > 10 ? postData.thumbnail : notphoto}
+      alt={postData.title}
+      onError={handleImageError} />
 
     <Content postData={postData} />
     <Rating ups={postData.ups} />
@@ -23,8 +29,8 @@ export const Post = ({ postData }) => (
 
     <time
       className={style.date}
-      dateTime={postData.date}>
-      {formateDate(postData.date)}
+      dateTime={new Date().toISOString()}>
+      {formateDate(new Date())}
     </time>
 
   </li >

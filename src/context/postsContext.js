@@ -1,14 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { usePosts } from '../hooks/usePosts';
 
 export const postsContext = React.createContext({});
 
-export function usePostsContext() {
-  return useContext(postsContext);
-}
-
 export const PostsContextProvider = ({ children }) => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = usePosts();
 
   return (
     <postsContext.Provider value={{ posts, setPosts }}>

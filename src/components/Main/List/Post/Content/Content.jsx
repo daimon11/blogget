@@ -12,7 +12,7 @@ export const Content = ({ postData }) => (
         size={18}
         tsize={24}
         className={style.linkPost}
-        href='#post'>
+        href={postData.url}>
         {postData.title}
       </Text>
     </Text>

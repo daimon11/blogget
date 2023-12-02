@@ -1,32 +1,29 @@
 import { useEffect, useState } from 'react';
-import { usePostsContext } from '../context/postsContext';
 
-function BestPostsComponent() {
-  const [ posts, setPosts ] = useState({});
+export function usePosts() {
+  const [ posts, setPosts ] = useState([]);
 
   useEffect(() => {
-    fetch(`https://www.reddit.com/best.json`)
-      .then(response => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://www.reddit.com/best.json`);
         if (response.status === 401) {
-          throw new Error(response.status);
+          throw new Error('Unauthorized');
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data.data.children);
-        setPosts(data.data.children);
-        console.log('posts', posts);
-      })
-      .catch((err) => {
+        const data = await response.json();
+        if (data.data.children) {
+          setPosts(data.data.children);
+        } else {
+          setPosts('ничего нету');
+        }
+      } catch (err) {
+        setPosts('ошибка');
         console.error(err);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
-
-  return (
-    <div className={'lexa'}>
-    </div>
-  );
+  return [ posts, setPosts ];
 }
-
-export default BestPostsComponent;

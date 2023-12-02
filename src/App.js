@@ -4,7 +4,6 @@ import Main from './components/Main';
 import { TokenContextProvider } from './context/tokenContext';
 import { AuthContextProvider } from './context/authContext';
 import { PostsContextProvider } from './context/postsContext';
-import BestPostsComponent from './hooks/usePosts';
 
 
 function App() {
