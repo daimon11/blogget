@@ -2,9 +2,9 @@
 /* eslint-disable indent */
 import style from './List.module.css';
 import Post from './Post';
+import BestPostsComponent from '../../../hooks/usePosts';
 
 export const List = () => {
-
   const postData = [
     {
       thumbnail: '',
@@ -42,8 +42,10 @@ export const List = () => {
         [<Post key='233141' postData={postData[0]}></Post>,
         <Post key='2' postData={postData[1]}></Post>,
         <Post key='3' postData={postData[2]}></Post>,
-        <Post key='4' postData={postData[3]}></Post>]
+        <Post key='4' postData={postData[3]}></Post>],
+        <BestPostsComponent/>
       }
     </ul>
+
   );
 };

@@ -1,19 +1,24 @@
 import PropTypes from 'prop-types';
 import Header from './components/Header';
 import Main from './components/Main';
-import { useToken } from './hooks/useToken';
+import { TokenContextProvider } from './context/tokenContext';
+import { AuthContextProvider } from './context/authContext';
+import { PostsContextProvider } from './context/postsContext';
+import BestPostsComponent from './hooks/usePosts';
 
 
 function App() {
-  const [token, delToken] = useToken('');
-
-  // console.log(typeof delToken);
-
   return (
-    <>
-      <Header token={token} delToken={delToken} />
-      <Main />
-    </>
+    <TokenContextProvider>
+      <AuthContextProvider>
+
+        <Header />
+        <PostsContextProvider>
+          <Main>
+          </Main>
+        </PostsContextProvider>
+      </AuthContextProvider>
+    </TokenContextProvider >
   );
 }
 
