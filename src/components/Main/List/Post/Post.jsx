@@ -10,10 +10,15 @@ import { ReactComponent as ButtonDel } from './img/delete.svg';
 const handleImageError = (e) => {
   e.target.onerror = null;
   e.target.src = notphoto;
-}
+};
+
+const handleListClick = (e) => {
+  console.log(e.target);
+  // Дополнительные действия при клике на пост
+};
 
 export const Post = ({ postData }) => (
-  <li className={style.post}>
+  <li className={style.post} >
     <img
       className={style.img}
       src={postData.thumbnail.length > 10 ? postData.thumbnail : notphoto}
@@ -22,7 +27,7 @@ export const Post = ({ postData }) => (
 
     <Content postData={postData} />
     <Rating ups={postData.ups} />
-    <button className={style.delete}>
+    <button className={style.delete} onClick={handleListClick}>
       <ButtonDel />
     </button>
 
