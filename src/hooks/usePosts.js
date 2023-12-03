@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function usePosts() {
+export function usePosts(count = 0, limit = 25) {
   const [ posts, setPosts ] = useState([]);
 
   useEffect(() => {
