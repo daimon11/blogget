@@ -6,7 +6,7 @@ export function usePosts(count = 0, limit = 25) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://www.reddit.com/best.json`);
+        const response = await fetch(`https://www.reddit.com/r/rusAskReddit/best.json?limit=${20}`);
         if (response.status === 401) {
           throw new Error('Unauthorized');
         }

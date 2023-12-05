@@ -1,11 +1,11 @@
 import style from './Content.module.css';
 import PropTypes from 'prop-types';
 import { Text } from '../../../../../UI/Text';
+import Modal from '../../../../Modal/index';
 import { useState } from 'react';
 
-export const Content = ({ postData }) => {
+export const Content = ({ author, title, markdown }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log('Content');
   return (
     <div className={style.content}>
       <Text
@@ -18,13 +18,12 @@ export const Content = ({ postData }) => {
           tsize={24}
           className={style.linkPost}
           onClick={() => {
-            console.log('открыто');
             setIsModalOpen(true);
-            console.log(isModalOpen);
+            console.log(markdown);
           }}
           href="#"
         >
-          {postData.title}
+          {title}
         </Text>
       </Text>
       <Text
@@ -35,13 +34,18 @@ export const Content = ({ postData }) => {
         className={style.linkAuthor}
         href='#author'
       >
-        {postData.author}
+        {author}
       </Text>
-      {isModalOpen && <p>Открыто</p>}
+      {isModalOpen && <Modal
+        title={title}
+        author={author}
+        markdown={markdown} />}
     </div >
   );
 };
 
 Content.propTypes = {
-  postData: PropTypes.object,
+  author: PropTypes.string,
+  title: PropTypes.string,
+  markdown: PropTypes.string,
 };
