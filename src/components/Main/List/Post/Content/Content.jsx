@@ -4,7 +4,7 @@ import { Text } from '../../../../../UI/Text';
 import Modal from '../../../../Modal/index';
 import { useState } from 'react';
 
-export const Content = ({ author, title, markdown }) => {
+export const Content = ({ author, title, markdown, id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className={style.content}>
@@ -19,7 +19,6 @@ export const Content = ({ author, title, markdown }) => {
           className={style.linkPost}
           onClick={() => {
             setIsModalOpen(true);
-            console.log(markdown);
           }}
           href="#"
         >
@@ -37,9 +36,9 @@ export const Content = ({ author, title, markdown }) => {
         {author}
       </Text>
       {isModalOpen && <Modal
-        title={title}
-        author={author}
-        markdown={markdown} />}
+        id={id}
+        closeModal={() => setIsModalOpen(false)}
+      />}
     </div >
   );
 };

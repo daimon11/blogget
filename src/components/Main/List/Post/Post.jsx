@@ -20,6 +20,7 @@ export const Post = ({ postData }) => {
     ups,
     selftext,
     created: date,
+    id,
   } = postData;
 
   const markdown = selftext ? selftext : `В свете текущих событий создаю один общий пост, в котором можно будет обсудить текущую политическую и/или военную ситуацию/событие в мире, а так же поделится своей инфой. Все остальные посты на эту тематику будут удаляться, нам политика на сабе не нужна.
@@ -43,7 +44,7 @@ export const Post = ({ postData }) => {
         alt={title}
         onError={handleImageError} />
 
-      <Content author={author} title={title} markdown={markdown} />
+      <Content author={author} title={title} markdown={markdown} id={id}/>
       <Rating ups={ups} />
       <button className={style.delete}>
         <ButtonDel />
@@ -57,7 +58,7 @@ export const Post = ({ postData }) => {
       </time>
 
     </li >
-  )
+  );
 };
 
 Post.propTypes = {

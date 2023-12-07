@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-export function usePosts(count = 0, limit = 25) {
+export function usePosts(limit = 20) {
   const [ posts, setPosts ] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://www.reddit.com/r/rusAskReddit/best.json?limit=${20}`);
+        const response = await fetch(`https://www.reddit.com/r/rusAskReddit/best.json?limit=${limit}`);
         if (response.status === 401) {
           throw new Error('Unauthorized');
         }
