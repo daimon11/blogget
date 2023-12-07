@@ -54,7 +54,7 @@ export const Modal = ({ id, closeModal }) => {
       <div className={style.modal}>
         {loading ? 'Загрузка...' :
           (<div> <h2 className={style.title}>{postData.title}</h2>
-
+            <img src={postData.url} width={400}/>
             <div className={style.content}>
               <Markdown options={
                 {

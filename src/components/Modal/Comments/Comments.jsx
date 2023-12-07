@@ -20,7 +20,7 @@ export const Comments = ({ comments }) => (
       <time
         className={style.date}
         dateTime={new Date().toISOString()}>
-        {formateDate(new Date())}
+        {formateDate(item.created * 1000)}
       </time>
     </li>))}
 
