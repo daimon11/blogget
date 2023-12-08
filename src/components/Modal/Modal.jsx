@@ -33,6 +33,7 @@ export const Modal = ({ id, closeModal }) => {
     }
   };
 
+
   useEffect(() => {
     document.addEventListener('click', handleClick);
     document.addEventListener('keydown', handleKeyPress);
