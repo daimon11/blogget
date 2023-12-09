@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { useEffect, useRef } from 'react';
 import { useCommentsData } from '../../hooks/useCommentsData';
 
+
 import { Comments } from './Comments/Comments.jsx';
 import { FormComment } from './FormComment/FormComment.jsx';
 
@@ -55,7 +56,7 @@ export const Modal = ({ id, closeModal }) => {
       <div className={style.modal}>
         {loading ? 'Загрузка...' :
           (<div> <h2 className={style.title}>{postData.title}</h2>
-            <img src={postData.url} width={400}/>
+            <img src={postData.url} width={400} />
             <div className={style.content}>
               <Markdown options={
                 {
