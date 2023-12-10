@@ -1,22 +1,22 @@
 import style from './FormComment.module.css';
 import { Text } from '../../../UI/Text';
-import { commentContext } from '../../../context/commentContext';
-import { useContext } from 'react';
-import { useStore } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
+import { updateComment} from '../../../store';
 
 
 export const FormComment = () => {
-  const store = useStore();
-  const value = store.getState().comment;
-  const {setValue} = useContext(commentContext);
+  const value = useSelector(state => state.comment);
+  const dispatch = useDispatch();
+  console.log('value', value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
+    // console.log(value);
   };
 
   const handleChange = e => {
-    setValue(e.target.value);
+    dispatch(updateComment(e.target.value));
+    // dispatch(updateComment(e.target.value));
   };
 
   return (
@@ -37,5 +37,5 @@ export const FormComment = () => {
         onClick={() => { console.log('есть') }
         }>Отправить</button>
     </form>
-  )
+  );
 };
