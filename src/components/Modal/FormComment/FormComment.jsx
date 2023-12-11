@@ -11,12 +11,10 @@ export const FormComment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(value);
   };
 
   const handleChange = e => {
     dispatch(updateComment(e.target.value));
-    // dispatch(updateComment(e.target.value));
   };
 
   return (
@@ -34,7 +32,7 @@ export const FormComment = () => {
       />
       <button
         className={style.btn}
-        onClick={() => { console.log('есть') }
+        onClick={(e) => { console.log(e.target.value) }
         }>Отправить</button>
     </form>
   );

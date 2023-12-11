@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Main from './components/Main';
 
 import { Provider } from 'react-redux';
-import { TokenContextProvider } from './context/tokenContext';
 import { AuthContextProvider } from './context/authContext';
 import { PostsContextProvider } from './context/postsContext';
 import { store } from './store/';
@@ -11,16 +10,14 @@ import { store } from './store/';
 
 const App = () => (
   <Provider store={store}>
-    <TokenContextProvider>
-      <AuthContextProvider>
-        <PostsContextProvider>
+    <AuthContextProvider>
+      <PostsContextProvider>
 
-          <Header />
-          <Main />
+        <Header />
+        <Main />
 
-        </PostsContextProvider>
-      </AuthContextProvider>
-    </TokenContextProvider >
+      </PostsContextProvider>
+    </AuthContextProvider>
   </Provider>
 );
 

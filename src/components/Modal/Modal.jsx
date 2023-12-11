@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import { useEffect, useRef } from 'react';
 import { useCommentsData } from '../../hooks/useCommentsData';
 
-
 import { Comments } from './Comments/Comments.jsx';
 import { FormComment } from './FormComment/FormComment.jsx';
 

@@ -1,10 +1,14 @@
 import {useEffect, useState, useContext} from 'react';
 import {URL_API} from '../api/const';
-import {tokenContext} from '../context/tokenContext';
+import { useDispatch, useSelector} from 'react-redux';
+// import {tokenContext} from '../context/tokenContext';
+import {deleteToken, updateToken} from '.././store/index';
 
 export const useAuth = () => {
   const [auth, setAuth] = useState({});
-  const {token, delToken} = useContext(tokenContext);
+  const token = useSelector(state => state.token);
+  const dispatch = useDispatch();
+  console.log(token);
 
   useEffect(() => {
     if (!token) {
@@ -24,13 +28,13 @@ export const useAuth = () => {
         return response.json()
       })
       .then(({ features }) => {
-        console.log(features);
+        console.log('features', features);
         setAuth({ name: 'Дмитрий', img: './img/IMG_20210928_183056_0257.jpg' });
       })
       .catch((err) => {
         console.error(err);
         setAuth({});
-        delToken();
+        dispatch(deleteToken());
       });
   }, [token]);
 
