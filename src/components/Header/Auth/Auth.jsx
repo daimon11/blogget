@@ -8,12 +8,10 @@ import { Text } from '../../../UI/Text';
 import { useDispatch } from 'react-redux';
 import { deleteToken } from '../../../store';
 
-// import { tokenContext } from '../../../context/tokenContext';
 import { authContext } from '../../../context/authContext';
 
 
 export const Auth = () => {
-  // const { delToken } = useContext(tokenContext);
   const dispatch = useDispatch();
   const {auth, clearAuth} = useContext(authContext);
 

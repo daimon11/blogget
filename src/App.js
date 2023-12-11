@@ -7,7 +7,6 @@ import { AuthContextProvider } from './context/authContext';
 import { PostsContextProvider } from './context/postsContext';
 import { store } from './store/';
 
-
 const App = () => (
   <Provider store={store}>
     <AuthContextProvider>
