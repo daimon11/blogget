@@ -1,28 +1,24 @@
-import PropTypes from 'prop-types';
 import Header from './components/Header';
 import Main from './components/Main';
 
-import { Provider } from 'react-redux';
-import { AuthContextProvider } from './context/authContext';
+import { useDispatch } from 'react-redux';
 import { PostsContextProvider } from './context/postsContext';
-import { store } from './store/';
+import { updateToken } from './store/tokenReducer';
+import { getToken } from './api/token';
 
-const App = () => (
-  <Provider store={store}>
-    <AuthContextProvider>
-      <PostsContextProvider>
+const App = () => {
+  const dispatch = useDispatch();
+  dispatch(updateToken(getToken()));
 
-        <Header />
-        <Main />
+  return (
+    <PostsContextProvider>
 
-      </PostsContextProvider>
-    </AuthContextProvider>
-  </Provider>
-);
+      <Header />
+      <Main />
 
-App.propTypes = {
-  token: PropTypes.string,
-  delToken: PropTypes.func,
+    </PostsContextProvider>
+  );
 };
+
 
 export default App;
