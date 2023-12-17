@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import PropTypes from 'prop-types';
 import style from './Auth.module.css';
 import { ReactComponent as LoginIcon } from './img/login.svg';

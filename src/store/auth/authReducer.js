@@ -12,12 +12,13 @@ const initialState = {
 };
 
 export const authReducer = (state = initialState, action) => {
-  // console.log('authReducer', action, state);
+  console.log('authReducer');
   switch (action.type) {
     case AUTH_REQUEST:
       return {
         ...state,
         loading: true,
+        error: null,
       };
     case AUTH_REQUEST_SUCCESS:
       return {

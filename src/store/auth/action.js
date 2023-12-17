@@ -31,7 +31,6 @@ export const authLogout = (error) => ({
 export const authRequestAsync = () => (dispatch, getState) => {
   console.log('authRequestAsync', getState());
 
-
   const token = getState().token.token;
 
   if (!token) {
