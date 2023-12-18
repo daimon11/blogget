@@ -1,24 +1,38 @@
 import axios from 'axios';
 
-export const POSTSDATA_REQUEST = 'POSTS_REQUEST';
-export const POSTSDATA_REQUEST_SUCCESS = 'POSTS_REQUEST_SUCCESS';
-export const POSTSDATA_REQUEST_ERROR = 'POSTS_REQUEST_ERROR';
+export const POSTSDATA_REQUEST = 'POSTSDATA_REQUEST';
+export const POSTSDATA_REQUEST_SUCCESS = 'POSTSDATA_REQUEST_SUCCESS';
+export const POSTSDATA_REQUEST_ERROR = 'POSTSDATA_REQUEST_ERROR';
 
-export const authRequest = () => ({
-  type: AUTH_REQUEST,
+export const postsDataRequest = () => ({
+  type: POSTSDATA_REQUEST,
 });
 
-export const authRequestSucces = (data) => ({
-  type: AUTH_REQUEST_SUCCESS,
+export const postsDataRequestSucces = (data) => ({
+  type: POSTSDATA_REQUEST_SUCCESS,
   data,
 });
 
-export const authRequestError = (error) => ({
-  type: AUTH_REQUEST_ERROR,
+export const postsDataRequestError = (error) => ({
+  type: POSTSDATA_REQUEST_ERROR,
   error,
 });
 
-export const authLogout = (error) => ({
-  type: AUTH_LOGOUT,
-  error,
-});
+export const getPosts = (limit = 20) => (dispatch) => {
+  dispatch(postsDataRequest());
+  axios(`https://www.reddit.com/r/rusAskReddit/best.json?limit=${limit}`)
+    .then(function (response) {
+      if (response.status === 401) {
+        throw new Error('Unauthorized');
+      }
+      const data = response.json();
+      if (data.data.children) {
+        // setPosts(data.data.children);
+        dispatch(postsDataRequestSucces(data.data.children))
+      }
+    })
+    .catch(function (error) {
+      dispatch(postsDataRequestError(error));
+      console.error(error);
+    })
+};
