@@ -18,17 +18,20 @@ export const postsDataRequestError = (error) => ({
   error,
 });
 
-export const getPosts = (limit = 20) => (dispatch) => {
+export const getPostsAsync = () => (dispatch) => {
   dispatch(postsDataRequest());
-  axios(`https://www.reddit.com/r/rusAskReddit/best.json?limit=${limit}`)
+  console.log('getPostsAsync postsDataRequest()');
+  axios(`https://www.reddit.com/r/rusAskReddit/best.json`)
     .then(function (response) {
       if (response.status === 401) {
         throw new Error('Unauthorized');
       }
-      const data = response.json();
-      if (data.data.children) {
+      const data = response.data.data.children;
+      console.log('response', data);
+      if (data) {
         // setPosts(data.data.children);
-        dispatch(postsDataRequestSucces(data.data.children))
+        console.log('передаю в postsDataRequestSucces(data)', data)
+        dispatch(postsDataRequestSucces(data))
       }
     })
     .catch(function (error) {
