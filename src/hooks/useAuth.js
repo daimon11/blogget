@@ -13,14 +13,11 @@ export const useAuth = () => {
   const loading = useSelector(state => state.auth.loading);
   const dispatch = useDispatch();
 
-  console.log('useAuth', auth);
-
   useEffect(() => {
     dispatch(authRequestAsync());
   }, [token]);
 
   const clearAuth = () => dispatch(authLogout());
-  console.log('useAuth end', auth);
 
   return [auth, loading, clearAuth];
 };

@@ -10,9 +10,7 @@ const initialState = {
   error: '',
 };
 
-export const postDataReducer = (state = initialState, action) => {
-  console.log('POSTSDATA action', action);
-  console.log('POSTSDATA state', action);
+export const postsDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case POSTSDATA_REQUEST:
       return {

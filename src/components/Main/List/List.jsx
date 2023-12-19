@@ -1,15 +1,12 @@
-// import { useContext } from 'react';
 import { usePosts } from '../../../hooks/usePosts';
 import style from './List.module.css';
 import Post from './Post';
-// import { postsContext } from '../../../context/postsContext';
+import { RingLoader } from 'react-spinners';
 
 export const List = () => {
   const [ posts, loading ] = usePosts();
-  console.log('List posts', posts);
-  console.log('List loading', loading);
 
-  return loading ? 'загрузка...' : (
+  return loading ? <RingLoader color='red' css={{display: 'block'}} size={300}/> : (
     <ul className={style.list}>
       {
         posts.map(item => <Post

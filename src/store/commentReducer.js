@@ -10,7 +10,7 @@ export const updateComment = comment => ({
   comment,
 });
 
-export const commentReducer = (state = initialState, action) => {
+export const valueCommentReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_COMMENT:
       return {
@@ -21,4 +21,8 @@ export const commentReducer = (state = initialState, action) => {
     default:
       return state;
   }
+};
+
+export const getCommentReducer = () => {
+
 };

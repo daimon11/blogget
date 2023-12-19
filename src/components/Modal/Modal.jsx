@@ -9,11 +9,14 @@ import { useCommentsData } from '../../hooks/useCommentsData';
 import { Comments } from './Comments/Comments.jsx';
 import { FormComment } from './FormComment/FormComment.jsx';
 
+import { PulseLoader } from 'react-spinners';
+
 export const Modal = ({ id, closeModal }) => {
-  const { postData, commentsData, loading } = useCommentsData(id);
-  console.log('postData = ', postData);
-  console.log('commentsData = ', commentsData);
-  console.log('Comments', Comments);
+  console.log('Modal', id);
+  const [postData, commentsData, postLoading, postStatus] = useCommentsData(id);
+
+  console.log('postStatus ============', postStatus);
+
   const overlayRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -50,38 +53,43 @@ export const Modal = ({ id, closeModal }) => {
     };
   }, []);
 
+  console.log('postLoading 22222222222', postLoading)
+
   return ReactDOM.createPortal(
+    // переписать в компонент
+    // переписать предзагрузку в компонент
     <div className={style.overlay} ref={overlayRef}>
       <div className={style.modal}>
-        {loading ? 'Загрузка...' :
-          (<div> <h2 className={style.title}>{postData.title}</h2>
-            <img src={postData.url} width={400} />
-            <div className={style.content}>
-              <Markdown options={
-                {
-                  overrides: {
-                    a: {
-                      props: {
-                        target: '_blanck',
-                      }
+        {postStatus === 'loading' && <PulseLoader />}
+        {postStatus === 'error' && 'Ошибка'}
+        {postStatus === 'loaded' && <div>
+          <h2 className={style.title}>{postData.title}</h2>
+          <img src={postData.url} width={400} />
+          <div className={style.content}>
+            <Markdown options={
+              {
+                overrides: {
+                  a: {
+                    props: {
+                      target: '_blanck',
                     }
                   }
-                }}>
-                {postData.selftext}
-              </Markdown>
-            </div>
-
-            <p className={style.author}>{postData.author}</p>
-
-            <button className={style.close} ref={buttonRef}>
-              <CloseIcon />
-            </button>
-
-            <FormComment />
-            <Comments comments={commentsData} />
+                }
+              }}>
+              {postData.selftext}
+            </Markdown>
           </div>
 
-          )
+          {/* переписать на Text */}
+          <p className={style.author}>{postData.author}</p>
+
+          <button className={style.close} ref={buttonRef}>
+            <CloseIcon />
+          </button>
+
+          <FormComment />
+          <Comments comments={commentsData} />
+        </div>
         }
       </div>
     </div >,

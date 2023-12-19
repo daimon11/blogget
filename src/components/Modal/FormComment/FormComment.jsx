@@ -4,7 +4,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { updateComment} from '../../../store/commentReducer';
 
 export const FormComment = () => {
-  const value = useSelector(state => state.comment.comment);
+  const value = useSelector(state => state.commentValue.comment);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
