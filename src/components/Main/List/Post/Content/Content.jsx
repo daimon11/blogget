@@ -4,7 +4,7 @@ import { Text } from '../../../../../UI/Text';
 import Modal from '../../../../Modal/index';
 import { useState } from 'react';
 
-export const Content = ({ author, title, markdown, id }) => {
+export const Content = ({ author, title, id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className={style.content}>
@@ -46,5 +46,4 @@ export const Content = ({ author, title, markdown, id }) => {
 Content.propTypes = {
   author: PropTypes.string,
   title: PropTypes.string,
-  markdown: PropTypes.string,
 };
