@@ -1,14 +1,9 @@
-import style from './Modal.module.css';
 import PropTypes from 'prop-types';
 
 
 import ReactDOM from 'react-dom';
 import { useEffect, useRef } from 'react';
 import { useCommentsData } from '../../hooks/useCommentsData';
-
-
-
-
 
 import { Overlay } from './Overlay/Overlay.jsx';
 
@@ -37,7 +32,6 @@ export const Modal = ({ id, closeModal }) => {
     }
   };
 
-
   useEffect(() => {
     document.addEventListener('click', handleClick);
     document.addEventListener('keydown', handleKeyPress);
@@ -53,7 +47,6 @@ export const Modal = ({ id, closeModal }) => {
       document.removeEventListener('click', handleClick);
     };
   }, []);
-
 
   return ReactDOM.createPortal(
     <Overlay

@@ -6,17 +6,15 @@ import { RingLoader } from 'react-spinners';
 export const List = () => {
   const [posts, loading] = usePosts();
 
-  return loading ?
-    <RingLoader color='red' css={{ display: 'block' }} size={300} /> :
-    (
-      <ul className={style.list}>
-        {
-          posts.map(item => <Post
-            key={item.data.id}
-            postData={item.data}></Post>
-          )
-        }
-      </ul>
-
-    );
-};
+  return loading ? (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <RingLoader color='red' size={300} />
+    </div>
+  ) : (
+    <ul className={style.list}>
+      {posts.map(item => (
+        <Post key={item.data.id} postData={item.data} />
+      ))}
+    </ul>
+  );
+      };

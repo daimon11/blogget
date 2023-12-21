@@ -5,51 +5,54 @@ import { FormComment } from './FormComment/FormComment.jsx';
 import { PulseLoader } from 'react-spinners';
 import { Comments } from './Comments/Comments.jsx';
 Comments;
+import { Text } from '../../../UI/Text/Text.jsx';
 
 
-// PulseLoader стилизовать
-
-export const Overlay = ({
-  postStatus,
-  postData,
-  commentsData,
-  postLoading,
-  buttonRef,
-  overlayRef,
-}) => (
-  <div className={style.overlay} ref={overlayRef}>
-    <div className={style.modal}>
-      {postStatus === 'loading' && <PulseLoader />}
-      {postStatus === 'error' && 'Ошибка'}
-      {postStatus === 'loaded' && <div>
-        <h2 className={style.title}>{postData.title}</h2>
-        <img src={postData.url} width={400} />
-        <div className={style.content}>
-          <Markdown options={
-            {
-              overrides: {
-                a: {
-                  props: {
-                    target: '_blanck',
+export const Overlay = (
+  {
+    postStatus,
+    postData,
+    commentsData,
+    postLoading,
+    buttonRef,
+    overlayRef,
+  }) => {
+    console.log(postData);
+  const { title, url, selftext, author } = postData || {};
+  return (
+    <div className={style.overlay} ref={overlayRef}>
+      <div className={style.modal}>
+        {postStatus === 'loading' && <div style={{display: 'flex', justifyContent: 'center' }}><PulseLoader /></div>}
+        {postStatus === 'error' && 'Ошибка'}
+        {postStatus === 'loaded' && <div>
+          <Text As={'h2'} className={style.title}>{title}</Text>
+          <img src={url} width={400} />
+          <div className={style.content}>
+            <Markdown options={
+              {
+                overrides: {
+                  a: {
+                    props: {
+                      target: '_blanck',
+                    }
                   }
                 }
-              }
-            }}>
-            {postData.selftext}
-          </Markdown>
+              }}>
+              {selftext}
+            </Markdown>
+          </div>
+
+          <Text As={'p'} className={style.author}>{author}</Text>
+
+          <button className={style.close} ref={buttonRef}>
+            <CloseIcon />
+          </button>
+
+          <FormComment />
+          <Comments comments={commentsData} />
         </div>
-
-        {/* переписать на Text */}
-        <p className={style.author}>{postData.author}</p>
-
-        <button className={style.close} ref={buttonRef}>
-          <CloseIcon />
-        </button>
-
-        <FormComment />
-        <Comments comments={commentsData} />
+        }
       </div>
-      }
     </div>
-  </div>
-)
+  );
+};

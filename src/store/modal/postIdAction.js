@@ -28,10 +28,8 @@ export const getPostAsync = (id) => (dispatch) => {
       }
       const post = response.data[0].data.children[0].data;
       const comment = response.data[1].data.children.map(item => item.data);
-      console.log('getPostAsync !!!!!!!!', post);
       if (post) {
         const data = {post, comment};
-        console.log('getPostAsync !!!!!!!!', data);
         dispatch(postDataRequestSuccess(data));
       }
     })
