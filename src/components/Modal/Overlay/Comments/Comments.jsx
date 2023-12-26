@@ -5,7 +5,7 @@ import { formateDate } from '../../../../utils/formateDate';
 
 export const Comments = ({ comments }) => (
   <ul className={style.list}>
-    {comments && comments.map((item) =>
+    {comments && comments.map((item) => item.body &&
       (<li key={item.id} className={style.item}>
         <Text
           As='h3'

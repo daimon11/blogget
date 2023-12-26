@@ -6,9 +6,11 @@ import { useEffect, useRef } from 'react';
 import { useCommentsData } from '../../hooks/useCommentsData';
 
 import { Overlay } from './Overlay/Overlay.jsx';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export const Modal = ({ id, closeModal }) => {
-  console.log('Modal', id);
+export const Modal = () => {
+  const { id, page } = useParams();
+  const navigate = useNavigate();
   const [postData, commentsData, postLoading, postStatus] = useCommentsData(id);
 
   console.log('postStatus ============', postStatus);
@@ -22,13 +24,13 @@ export const Modal = ({ id, closeModal }) => {
     if (target === overlayRef.current ||
       target === buttonRef.current ||
       target.closest('.closeIcon')) {
-      closeModal();
+      navigate(`/category/${page}`);
     }
   };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Escape') {
-      closeModal();
+      navigate(`/category/${page}`);
     }
   };
 

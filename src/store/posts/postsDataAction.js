@@ -5,6 +5,7 @@ export const POSTSDATA_REQUEST_SUCCESS = 'POSTSDATA_REQUEST_SUCCESS';
 export const POSTSDATA_REQUEST_ERROR = 'POSTSDATA_REQUEST_ERROR';
 export const POSTSDATA_REQUEST_SUCCESS_AFTER =
   'POSTSDATA_REQUEST_SUCCESS_AFTER';
+export const CHANGE_PAGE = 'CHANGE_PAGE';
 
 export const postsDataRequest = () => ({
   type: POSTSDATA_REQUEST,
@@ -26,8 +27,17 @@ export const postsDataRequestError = (error) => ({
   error,
 });
 
-export const getPostsAsync = () => (dispatch, getState) => {
-  console.log('getPostsAsync', getState());
+export const changePage = (page) => ({
+  type: CHANGE_PAGE,
+  page,
+});
+
+export const getPostsAsync = (newPage) => (dispatch, getState) => {
+  let page = getState().postData.page;
+  if (newPage) {
+    page = newPage;
+    dispatch(changePage(newPage));
+  }
   const after = getState().postData.after;
   const loading = getState().postData.loading;
   const isLast = getState().postData.isLast;
@@ -35,7 +45,7 @@ export const getPostsAsync = () => (dispatch, getState) => {
   if (loading || isLast) return;
 
   dispatch(postsDataRequest());
-  axios(`https://www.reddit.com/r/rusAskReddit/best.json?limit=8&${after ? `after=${after}` : ''}`)
+  axios(`https://www.reddit.com/r/rusAskReddit/${page}.json?limit=8&${after ? `after=${after}` : ''}`)
     .then((response) => {
       if (response.status === 401) {
         throw new Error('Unauthorized');
@@ -49,10 +59,6 @@ export const getPostsAsync = () => (dispatch, getState) => {
         console.log('else data');
         dispatch(postsDataRequestSucces(data));
       }
-      // if (data) {
-      //   console.log('getPostsAsync after', data);
-      //   // dispatch(postsDataRequestSucces(data));
-      // }
     })
     .catch((error) => {
       dispatch(postsDataRequestError(error));
