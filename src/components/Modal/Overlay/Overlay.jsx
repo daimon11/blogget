@@ -4,9 +4,8 @@ import { ReactComponent as CloseIcon } from '../img/close.svg';
 import { FormComment } from './FormComment/FormComment.jsx';
 
 import { Comments } from './Comments/Comments.jsx';
-Comments;
 import { Text } from '../../../UI/Text/Text.jsx';
-import {ModalPreloader} from './ModalPreloader/ModalPreloader.jsx';
+import { ModalPreloader } from './ModalPreloader/ModalPreloader.jsx';
 
 
 export const Overlay = (
@@ -18,12 +17,12 @@ export const Overlay = (
     buttonRef,
     overlayRef,
   }) => {
-    console.log(postData);
+  console.log(postData);
   const { title, url, selftext, author } = postData || {};
   return (
     <div className={style.overlay} ref={overlayRef}>
       <div className={style.modal}>
-        {postStatus === 'loading' && <ModalPreloader/>}
+        {postStatus === 'loading' && <ModalPreloader />}
         {postStatus === 'error' && 'Ошибка'}
         {postStatus === 'loaded' && <div>
           <Text As={'h2'} className={style.title}>{title}</Text>

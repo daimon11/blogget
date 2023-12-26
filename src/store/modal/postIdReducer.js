@@ -12,7 +12,6 @@ const initialState = {
 };
 
 export const postIdDataReducer = (state = initialState, action) => {
-  console.log('postIdDataReducer &&&&&&&', action);
   switch (action.type) {
     case POSTDATA_REQUEST:
       return {
