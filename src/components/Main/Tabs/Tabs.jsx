@@ -11,8 +11,9 @@ import { ReactComponent as HotIcon } from './img/hot.svg';
 import { ReactComponent as TopIcon } from './img/top.svg';
 import { useNavigate } from 'react-router-dom';
 
-const LIST = [
-  { value: 'Главная', Icon: HomeIcon, link: 'rising' },
+
+export const LIST = [
+  { value: 'Главная', Icon: HomeIcon, link: 'home' },
   { value: 'Топ', Icon: TopIcon, link: 'top' },
   { value: 'Лучшие', Icon: BestIcon, link: 'best' },
   { value: 'Горячие', Icon: HotIcon, link: 'hot' },
@@ -61,7 +62,7 @@ export const Tabs = () => {
                 className={style.btn}
                 onClick={() => {
                   setActivePage(value);
-                  navigate(`/category/${link}`);
+                  navigate( link !== 'home' ? `/category/${link}` : ``);
                 }}>
                 {value}
                 {Icon && <Icon width={30} height={25} />}

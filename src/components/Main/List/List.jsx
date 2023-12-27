@@ -11,7 +11,7 @@ export const List = () => {
   const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
-  console.log(page);
+  console.log('List', page);
 
   useEffect(() => {
     dispatch(getPostsAsync(page));
