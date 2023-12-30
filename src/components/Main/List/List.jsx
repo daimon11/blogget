@@ -1,13 +1,14 @@
 import { useEffect, useRef } from 'react';
 import style from './List.module.css';
 import Post from './Post';
-// import { PostsPreloader } from './PostsPreloader/PostsPreloader';
+import { PostsPreloader } from './PostsPreloader/PostsPreloader';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAsync } from '../../../store/posts/postsDataAction';
 import { Outlet, useParams } from 'react-router-dom';
 
 export const List = () => {
   const posts = useSelector(state => state.postData.data);
+  const loading = useSelector(state => state.postData.loading);
   const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
@@ -25,21 +26,27 @@ export const List = () => {
     }, {
       rootMargin: '100px',
     });
-    observer.observe(endList.current);
+    if (endList.current) {
+      observer.observe(endList.current);
+    }
 
-    // возможно здесь нужен return
-
+    return () => {
+      if (endList.current) {
+        observer.unobserve(endList.current);
+      }
+    };
   }, [endList.current]);
 
   return (
-    <>
-      <ul className={style.list}>
-        {posts.map(item => (
-          <Post key={item.data.id} postData={item.data} />
-        ))}
-        <li ref={endList} className={style.end} />
-      </ul>
-      <Outlet />
-    </>
+    loading ? <PostsPreloader /> :
+      <>
+        <ul className={style.list}>
+          {posts.map(item => (
+            <Post key={item.data.id} postData={item.data} />
+          ))}
+          <li ref={endList} className={style.end} />
+        </ul>
+        <Outlet />
+      </>
   );
 };
