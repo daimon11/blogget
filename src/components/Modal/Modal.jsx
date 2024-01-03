@@ -14,6 +14,8 @@ export const Modal = () => {
   const [postData, commentsData, postLoading, postStatus] = useCommentsData(id);
 
   console.log('postStatus ============', postStatus);
+  console.log('useCommentsData(id)', useCommentsData(id));
+
 
   const overlayRef = useRef(null);
   const buttonRef = useRef(null);

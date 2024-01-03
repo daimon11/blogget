@@ -17,7 +17,8 @@ export const Overlay = (
     buttonRef,
     overlayRef,
   }) => {
-  console.log(postData);
+  console.log('postData', postData);
+  console.log('commentsData', commentsData);
   const { title, url, selftext, author } = postData || {};
   return (
     <div className={style.overlay} ref={overlayRef}>

@@ -1,7 +1,7 @@
 import style from './FormComment.module.css';
 import { Text } from '../../../../UI/Text';
 import { useDispatch, useSelector} from 'react-redux';
-import { updateComment} from '../../../../store/commentReducer';
+import { updateComment} from '../../../../store/comment/commentReducer';
 
 export const FormComment = () => {
   const value = useSelector(state => state.commentValue.comment);
@@ -13,6 +13,11 @@ export const FormComment = () => {
 
   const handleChange = e => {
     dispatch(updateComment(e.target.value));
+    console.log(e.target.value);
+  };
+
+  const handleClick = e => {
+    console.log(e.target.value);
   };
 
   return (
@@ -30,8 +35,7 @@ export const FormComment = () => {
       />
       <button
         className={style.btn}
-        onClick={(e) => { console.log(e.target.value) }
-        }>Отправить</button>
+        onClick={handleClick}>Отправить</button>
     </form>
   );
 };

@@ -23,6 +23,3 @@ export const valueCommentReducer = (state = initialState, action) => {
   }
 };
 
-export const getCommentReducer = () => {
-
-};

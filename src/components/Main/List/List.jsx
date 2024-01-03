@@ -13,6 +13,7 @@ export const List = () => {
   const dispatch = useDispatch();
   const { page } = useParams();
   console.log('List', page);
+  console.log('posts', posts);
 
   useEffect(() => {
     dispatch(getPostsAsync(page));
@@ -38,7 +39,7 @@ export const List = () => {
   }, [endList.current]);
 
   return (
-    loading ? <PostsPreloader /> :
+    loading ? <PostsPreloader /> : posts.length > 0 ?
       <>
         <ul className={style.list}>
           {posts.map(item => (
@@ -47,6 +48,6 @@ export const List = () => {
           <li ref={endList} className={style.end} />
         </ul>
         <Outlet />
-      </>
+      </> : ''
   );
 };
