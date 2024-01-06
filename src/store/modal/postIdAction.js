@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import { commentsSlice } from './commentsSlice';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getPostAsync2 = (id) => (dispatch) => {

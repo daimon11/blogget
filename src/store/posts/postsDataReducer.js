@@ -1,10 +1,13 @@
-import {
-  POSTSDATA_REQUEST,
-  POSTSDATA_REQUEST_SUCCESS,
-  POSTSDATA_REQUEST_ERROR,
-  POSTSDATA_REQUEST_SUCCESS_AFTER,
-  CHANGE_PAGE,
-} from './postsDataAction';
+import { createSlice } from '@reduxjs/toolkit';
+import { getPostsAsync } from './postsDataAction';
+
+// import {
+//   POSTSDATA_REQUEST,
+//   POSTSDATA_REQUEST_SUCCESS,
+//   POSTSDATA_REQUEST_ERROR,
+//   POSTSDATA_REQUEST_SUCCESS_AFTER,
+//   CHANGE_PAGE,
+// } from './postsDataAction';
 
 const initialState = {
   loading: false,
@@ -15,47 +18,31 @@ const initialState = {
   page: '',
 };
 
-export const postsDataReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case POSTSDATA_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: null,
-      };
-    case POSTSDATA_REQUEST_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        data: action.data,
-        error: '',
-        after: action.after,
-        isLast: !action.after,
-      };
-    case POSTSDATA_REQUEST_SUCCESS_AFTER:
-      return {
-        ...state,
-        loading: false,
-        data: [...state.data, ...action.data],
-        error: '',
-        after: action.after,
-        isLast: !action.after,
-      };
-    case POSTSDATA_REQUEST_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.error,
-      };
-    case CHANGE_PAGE:
-      return {
-        ...state,
-        page: action.page,
-        after: '',
-        isLast: false,
-      };
+export const getPostsSlice = createSlice({
+  name: 'postData',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getPostAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getPostAsync.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.data;
+        state.error = '';
+        state.after = action.after;
+        state.isLast = !action.after;
+      })
+      .addCase(getPostAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.data = [...state.data, ...action.data];
+        state.error = '';
+        state.after = action.after;
+        state.isLast = !action.after;
+      });
+  },
+});
 
-    default:
-      return state;
-  }
-};
+export default getPostsSlice.reducer;
