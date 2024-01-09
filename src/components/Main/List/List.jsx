@@ -1,23 +1,26 @@
 import { useEffect, useRef } from 'react';
 import style from './List.module.css';
 import Post from './Post';
-import { PostsPreloader } from './PostsPreloader/PostsPreloader';
+// import { PostsPreloader } from './PostsPreloader/PostsPreloader';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAsync } from '../../../store/posts/postsDataAction';
+import { resetPosts } from '../../../store/posts/postsDataSlice';
 import { Outlet, useParams } from 'react-router-dom';
 
 export const List = () => {
-  const posts = useSelector(state => state.postData.data);
-  const loading = useSelector(state => state.postData.loading);
+  const posts = useSelector(state => state.postData.posts);
+  console.log('posts', posts);
+  // const loading = useSelector(state => state.postData.loading);
   const endList = useRef(null);
   const dispatch = useDispatch();
   const { page } = useParams();
   console.log('List', page);
-  console.log('posts', posts);
 
   useEffect(() => {
-    dispatch(getPostsAsync(page));
-  }, [page]);
+    if (page) {
+      dispatch(resetPosts());
+    }
+  }, [page, dispatch]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -39,15 +42,15 @@ export const List = () => {
   }, [endList.current]);
 
   return (
-    loading ? <PostsPreloader /> : posts.length > 0 ?
-      <>
-        <ul className={style.list}>
-          {posts.map(item => (
-            <Post key={item.data.id} postData={item.data} />
-          ))}
-          <li ref={endList} className={style.end} />
-        </ul>
-        <Outlet />
-      </> : ''
+    // loading ? <PostsPreloader /> :
+    <>
+      <ul className={style.list}>
+        {posts.map(item => (
+          <Post key={item.data.id} postData={item.data} />
+        ))}
+        <li ref={endList} className={style.end} />
+      </ul>
+      <Outlet />
+    </>
   );
 };

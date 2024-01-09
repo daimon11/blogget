@@ -1,11 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const getPostAsync2 = (id) => (dispatch) => {
-  console.log('getPostAsync start', id);
-
-};
-
 export const getPostAsync = createAsyncThunk(
   'comments/fetch', (id) => (axios(`https://www.reddit.com/r/rusAskReddit/${id}.json`)
     .then((response) => {
