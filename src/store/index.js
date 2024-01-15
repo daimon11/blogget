@@ -6,6 +6,10 @@ import { authReducer } from './auth/authReducer';
 import postsDataReducer from './posts/postsDataSlice';
 import commentsReducer from './modal/commentsSlice';
 import { configureStore } from '@reduxjs/toolkit';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './saga';
+
+const sagaMiddleware = createSagaMiddleware();
 
 
 console.log('postsDataReducer', postsDataReducer);
@@ -20,5 +24,7 @@ export const store = configureStore({
     comments: commentsReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(tokenMiddleware),
+    getDefaultMiddleware().concat(tokenMiddleware, sagaMiddleware),
 });
+
+sagaMiddleware.run(rootSaga);
