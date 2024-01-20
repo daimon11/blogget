@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import style from './Search.module.css';
 import { searchRequest } from '../../../store/search/searchAction';
 
@@ -7,12 +7,13 @@ import { ReactComponent as SearchIcon } from './img/search.svg';
 
 export const Search = () => {
   const dispatch = useDispatch();
-  const [setSearch, search] = useState('');
-  const token = useSelector(state => state.token.token);
+  const [search, setSearch] = useState('');
+
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(searchRequest({token, search}));
+    console.log('{search}', {search});
+    dispatch(searchRequest({search}));
   };
 
   return (
